@@ -20,4 +20,12 @@ if Meteor.isClient
             
     Template.edit_festival.events
         'click #save': ->
+            start_datetime = $('#start_datetime').val()
+            end_datetime = $('#end_datetime').val()
+            
+            Docs.update FlowRouter.getParam('doc_id'),
+                $set:
+                    start_datetime: start_datetime
+                    end_datetime: end_datetime
+
             FlowRouter.go "/view/#{FlowRouter.getParam('doc_id')}"

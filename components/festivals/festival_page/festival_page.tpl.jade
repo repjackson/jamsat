@@ -12,13 +12,19 @@ with item
                 .description
                     |!{description}
             .five.wide.column
-                h2.impact-header Tags
+                h3.ui.header When
+                    .ui.basic.segment
+                        h3
+                            .ui.sub.header #{day} 
+                            .ui.sub.header #{start_time} to #{end_time}
+
+                h2.ui.header Tags
                 each tags
                     .ui.basic.label #{this}
-                // h2.impact-header Actions
+                // h2.ui.header Actions
                 // +favorite
                 if isInRole 'admin'
-                    h2.impact-header Status
+                    h2.ui.header Status
                     if published
                         .ui.basic.green.label Published
                     else
@@ -26,6 +32,6 @@ with item
                     .extra.content
                         .ui.divider
                         i.large.red.configure.icon
-                        .edit.ui.primary.basic.button
+                        a(href="/edit_festival/#{_id}").ui.basic.button
                             i.pencil.icon
                             |Edit

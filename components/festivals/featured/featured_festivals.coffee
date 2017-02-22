@@ -1,16 +1,9 @@
-FlowRouter.route '/festivals', action: (params) ->
-    BlazeLayout.render 'layout',
-        # cloud: 'cloud'
-        main: 'festivals'
-
-
-
 if Meteor.isClient
-    Template.festivals.onCreated -> 
-        @autorun -> Meteor.subscribe('festivals', selected_tags.array())
+    Template.featured_festivals.onCreated -> 
+        @autorun -> Meteor.subscribe 'featured_festivals'
 
-    Template.festivals.helpers
-        festivals: -> 
+    Template.featured_festivals.helpers
+        featured_festivals: -> 
             Docs.find()
     
         tag_class: -> if @valueOf() in selected_tags.array() then 'primary' else 'basic'
@@ -27,7 +20,7 @@ if Meteor.isClient
     Template.festival_item.events
         'click .tag': -> if @valueOf() in selected_tags.array() then selected_tags.remove(@valueOf()) else selected_tags.push(@valueOf())
     
-    Template.festivals.events
+    Template.featured_festivals.events
         'click #add_festival': ->
             Meteor.call 'add_festival', (err,id)->
                 FlowRouter.go "/edit_festival/#{id}"
@@ -35,20 +28,15 @@ if Meteor.isClient
 
 
 if Meteor.isServer
-    Meteor.methods
-        add_festival: ->
-            id = Docs.insert
-                type: 'festival'
-            return id
-    
-    
-    
-    Meteor.publish 'festivals', (selected_tags)->
+    Meteor.publish 'featured_festivals', ->
     
         self = @
         match = {}
-        if selected_tags.length > 0 then match.tags = $all: selected_tags
         match.type = 'festival'
+        match.featured = true
     
-        Docs.find match
+        Docs.find match,
+            limit: 3
+    
+    
     
