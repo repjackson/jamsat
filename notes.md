@@ -60,4 +60,12 @@ ih customer workflow
     view human menu at kiosk, see picture, say hi to person
     
     
-DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com meteor deploy --settings settings.json facet.cloud
+DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com meteor deploy --settings settings.json www.jamsat.meteorapp.com
+
+
+
+
+notes from meeting 2/21
+    build admin interfaces for all data
+    establish data structure
+    copy the fuck out of jambase, destroy them

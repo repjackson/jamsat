@@ -1,0 +1,15 @@
+{
+	"public": {
+		"analyticsSettings": {
+			"Google Analytics": {
+				"trackingId": "UA-92159547-1"
+			}
+		}
+	},
+	"galaxy.meteor.com": {
+		"env": {
+			"MONGO_URL": "mongodb://ericadmin:Turnf34ragainst!@aws-us-east-1-portal.21.dblayer.com:10444/jamsatdb?ssl=true",
+			"ROOT_URL": "https://www.jamsat.meteorapp.com"
+		}
+	}
+}
