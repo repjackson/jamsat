@@ -1,10 +1,8 @@
-with item
+with band
     .ui.container
         .image
             img.ui.centered.image(src="{{c.url image_id height=400 width=800 background='white' crop='lpad'}}")
-            .overlay-text 
-                h1 #{title}
-        .ui.hidden.divider
+        h1.ui.center.aligned.header #{title}
         .ui.divided.stackable.grid
             .ten.wide.column
                 .meta
@@ -12,17 +10,11 @@ with item
                 .description
                     |!{description}
             .five.wide.column
-                h3.ui.header When
-                    .ui.basic.segment
-                        h3
-                            .ui.sub.header #{day} 
-                            .ui.sub.header #{start_time} to #{end_time}
-
+                h2.ui.header Actions
+                +favorite_button
                 h2.ui.header Tags
                 each tags
                     .ui.basic.label #{this}
-                h2.ui.header Actions
-                +favorite_button
                 if isInRole 'admin'
                     h2.ui.header Status
                     if published
@@ -32,6 +24,6 @@ with item
                     .extra.content
                         .ui.divider
                         i.large.red.configure.icon
-                        a(href="/edit_festival/#{_id}").ui.basic.button
+                        a(href="/band/edit/#{_id}").ui.basic.button
                             i.pencil.icon
-                            |Edit
+                            |Edit Band
